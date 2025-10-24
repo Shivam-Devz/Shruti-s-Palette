@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Add Paintings</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Artist Login</h1>
+    </header>
+
+    <main class="form-section">
+      <form id="loginForm">
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required
+        />
+        <button type="submit" class="btn">Login</button>
+        
+        <button onclick="window.location.href='index.html'" class="home-btn">
+          Back to Home
+        </button>
+      </form>
+    </main>
+
+    <script>
+      const storedHash =
+        "80e450205ee8343814fc7849da5deb29de57a56d0bbbc3124239c8c5ee5e0713";
+
+      async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+      }
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const inputPassword = document
+            .getElementById("password")
+            .value.trim();
+          const hashedInput = await hashPassword(inputPassword);
+
+          if (hashedInput === storedHash) {
+            sessionStorage.setItem("authorized", "true");
+            window.location.href = "add.html";
+          } else {
+            alert("Incorrect password!");
+          }
+        });
+    </script>
+  </body>
+</html>

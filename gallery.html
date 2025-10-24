@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Shruti's Palette</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1>Palette of Expressions</h1>
+      <p><i>From sketches to colors - stories painted my way.</i></p>
+      <a href="index.html" class="btn back-btn">← Back to Home</a>
+    </header>
+
+    <main class="gallery" id="gallery">
+    </main>
+
+    <footer>
+      <p>
+        © 2025 <strong>Shruti's Palette</strong> | Where Colors Speak Emotions 🎨
+      </p>
+      <div class="social-links">
+        <a href="#" target="_blank" aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#" target="_blank" aria-label="Facebook"
+          ><i class="fab fa-facebook"></i
+        ></a>
+        <a href="mailto:shrutiart@example.com" aria-label="Email"
+          ><i class="fas fa-envelope"></i
+        ></a>
+        <a href="contact.html" aria-label="Contact"
+          ><i class="fas fa-phone"></i
+        ></a>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Go to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JS for Back to Top -->
+    <script>
+      const backToTop = document.getElementById("backToTop");
+
+      window.onscroll = () => {
+        if (document.documentElement.scrollTop > 200) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      };
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

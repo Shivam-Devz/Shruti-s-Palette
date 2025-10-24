@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Painting</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <script>
+    if (sessionStorage.getItem("authorized") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <header>
+    <h1>Add a New Painting</h1>
+    <a href="gallery.html" class="btn back-btn">← Back to Gallery</a>
+  </header>
+
+  <main class="form-section">
+    <form id="paintingForm">
+      <input type="text" id="title" placeholder="Painting Title" required>
+      <textarea id="description" placeholder="Short Description"></textarea>
+      <input type="file" id="imageInput" accept="image/*" required>
+      <button type="submit" class="btn">Add Painting</button>
+    </form>
+  </main>
+
+  <button onclick="logout()" class="btn" style="margin:20px;">Logout</button>
+
+  <script src="script.js"></script>
+  <script>
+    function logout() {
+      sessionStorage.removeItem("authorized");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
