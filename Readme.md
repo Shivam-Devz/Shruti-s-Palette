@@ -9,8 +9,6 @@ Welcome to Shruti's Palette – an online gallery showcasing beautiful paintings
 * [Technologies Used](#technologies-used)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Contributing](#contributing)
-* [License](#license)
 * [Contact](#contact)
 
 ## About
@@ -67,6 +65,4 @@ cd Shruti-s-Palette
 
 **Artist Name:** Shruti Jaiswal
 **Location:** Jamshedpur, Jharkhand, India
-**Affiliations:**
 
-* Vikas School of Arts, Estd 1978, Affiliated to: Bangiya Sangeet Parishad, West Bengal Govt. and Bharati Kala Kendra, Lucknow, Under UP Govt.
