@@ -1,47 +1,18 @@
-// Add Painting (on add.html)
-const paintingForm = document.getElementById('paintingForm');
-if (paintingForm) {
-  paintingForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+let paintings = JSON.parse(localStorage.getItem('paintings')) || [
+  { title: "Grace in Motion", image: "images/Grace.jpeg", description: "An ink sketch capturing the poise of Bharatanatyam in timeless elegance." },
+  { title: "Wings of Bloom", image: "images/Bloom.jpeg", description: "A butterfly born of petals — where nature and imagination take flight together." },
+  { title: "Echoes of Home", image: "images/Home.jpeg", description: "A quiet village scene painted in shades of memory and solitude." },
+];
 
-    const title = document.getElementById('title').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const imageUrl = document.getElementById('imageInput').value.trim();
-
-    if (!title || !imageUrl) return alert('Please enter title and image URL.');
-
-    try {
-      await db.collection('paintings').add({
-        title,
-        description,
-        image: imageUrl,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-
-      alert('Painting added successfully!');
-      paintingForm.reset();
-
-    } catch (error) {
-      console.error('Error adding painting:', error);
-      alert('Failed to add painting.');
-    }
-  });
-}
-
-// Load Gallery (on gallery.html)
-const gallery = document.getElementById('gallery');
-if (gallery) {
-  loadGallery();
-}
-
-async function loadGallery() {
-  const isAdmin = sessionStorage.getItem("authorized") === "true";
-  const snapshot = await db.collection('paintings').orderBy('createdAt', 'desc').get();
-  const paintings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+function renderGallery() {
+  const gallery = document.getElementById('gallery');
+  if (!gallery) return;
 
   gallery.innerHTML = '';
 
-  paintings.forEach(p => {
+  const isAdmin = sessionStorage.getItem("authorized") === "true";
+
+  paintings.forEach((p, index) => {
     const card = document.createElement('div');
     card.className = 'painting-card';
     let html = `
@@ -51,7 +22,7 @@ async function loadGallery() {
     `;
 
     if (isAdmin) {
-      html += `<button class="btn delete-btn" data-id="${p.id}">Delete</button>`;
+      html += `<button class="btn delete-btn" data-index="${index}">Delete</button>`;
     }
 
     card.innerHTML = html;
@@ -61,19 +32,38 @@ async function loadGallery() {
   // Delete functionality
   if (isAdmin) {
     document.querySelectorAll(".delete-btn").forEach(btn => {
-      btn.addEventListener("click", async (e) => {
-        const paintingId = e.target.dataset.id;
-
-        if (!confirm("Are you sure you want to delete this painting?")) return;
-
-        try {
-          await db.collection('paintings').doc(paintingId).delete();
-          loadGallery();
-        } catch (error) {
-          console.error('Error deleting painting:', error);
-          alert('Failed to delete painting.');
+      btn.addEventListener("click", (e) => {
+        const idx = e.target.dataset.index;
+        if (confirm("Are you sure you want to delete this painting?")) {
+          paintings.splice(idx, 1);
+          localStorage.setItem('paintings', JSON.stringify(paintings));
+          renderGallery();
         }
       });
     });
   }
+}
+
+renderGallery();
+
+const paintingForm = document.getElementById('paintingForm');
+if (paintingForm) {
+  paintingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('title').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const file = document.getElementById('imageInput').files[0];
+
+    if (!title || !file) return alert('Please enter title and select an image.');
+
+    const reader = new FileReader();
+    reader.onload = function () {
+      paintings.push({ title, description, image: reader.result });
+      localStorage.setItem('paintings', JSON.stringify(paintings));
+      alert('Painting added successfully!');
+      paintingForm.reset();
+      renderGallery();
+    };
+    reader.readAsDataURL(file);
+  });
 }
