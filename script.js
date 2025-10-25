@@ -6,15 +6,11 @@ if (paintingForm) {
 
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
-    const file = document.getElementById('imageInput').files[0];
+    const imageUrl = document.getElementById('imageInput').value.trim();
 
-    if (!title || !file) return alert('Please enter title and select an image.');
+    if (!title || !imageUrl) return alert('Please enter title and image URL.');
 
     try {
-      const storageRef = storage.ref().child(`paintings/${Date.now()}_${file.name}`);
-      await storageRef.put(file);
-      const imageUrl = await storageRef.getDownloadURL();
-
       await db.collection('paintings').add({
         title,
         description,
@@ -26,7 +22,7 @@ if (paintingForm) {
       paintingForm.reset();
 
     } catch (error) {
-      console.error('Error uploading painting:', error);
+      console.error('Error adding painting:', error);
       alert('Failed to add painting.');
     }
   });
@@ -55,25 +51,23 @@ async function loadGallery() {
     `;
 
     if (isAdmin) {
-      html += `<button class="btn delete-btn" data-id="${p.id}" data-image="${p.image}">Delete</button>`;
+      html += `<button class="btn delete-btn" data-id="${p.id}">Delete</button>`;
     }
 
     card.innerHTML = html;
     gallery.appendChild(card);
   });
 
+  // Delete functionality
   if (isAdmin) {
     document.querySelectorAll(".delete-btn").forEach(btn => {
       btn.addEventListener("click", async (e) => {
         const paintingId = e.target.dataset.id;
-        const imageUrl = e.target.dataset.image;
 
         if (!confirm("Are you sure you want to delete this painting?")) return;
 
         try {
           await db.collection('paintings').doc(paintingId).delete();
-          const imageRef = storage.refFromURL(imageUrl);
-          await imageRef.delete();
           loadGallery();
         } catch (error) {
           console.error('Error deleting painting:', error);

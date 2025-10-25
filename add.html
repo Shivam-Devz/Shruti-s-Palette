@@ -22,7 +22,7 @@
     <form id="paintingForm">
       <input type="text" id="title" placeholder="Painting Title" required>
       <textarea id="description" placeholder="Short Description"></textarea>
-      <input type="file" id="imageInput" accept="image/*" required>
+      <input type="url" id="imageInput" placeholder="Image URL (GitHub or hosted image)" required>
       <button type="submit" class="btn">Add Painting</button>
     </form>
   </main>
@@ -32,7 +32,6 @@
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js"></script>
 
   <script>
     const firebaseConfig = {
@@ -46,7 +45,6 @@
 
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-    const storage = firebase.storage();
   </script>
 
   <script src="script.js"></script>
