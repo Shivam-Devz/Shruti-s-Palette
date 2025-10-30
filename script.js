@@ -1,79 +1,8 @@
 let paintings = JSON.parse(localStorage.getItem('paintings')) || [
-  { 
-    title: "Grace in Motion", 
-    image: "images/Grace.jpeg", 
-    description: "An ink sketch capturing the poise of Bharatanatyam in timeless elegance." 
-  },
-  { 
-    title: "Wings of Bloom", 
-    image: "images/Bloom.jpeg", 
-    description: "A butterfly born of petals — where nature and imagination take flight together." 
-  },
-  { 
-    title: "Echoes of Home", 
-    image: "images/Home.jpeg", 
-    description: "A quiet village scene painted in shades of memory and solitude." 
-  },
-  { 
-    title: "Whispering Perch", 
-    image: "images/Perch.jpeg", 
-    description: "A delicate pencil sketch of a bird resting quietly on a branch — simplicity meeting serenity." 
-  },
-  { 
-    title: "Timeless Bloom", 
-    image: "images/Timless.jpeg", 
-    description: "A classic graphite rose symbolizing love and resilience through soft strokes and sharp details." 
-  },
-  { 
-    title: "Breath of Reflection", 
-    image: "images/Breath.jpeg", 
-    description: "An expressive portrait sketch capturing the emotion of a woman lost in thought, blending grace and intensity." 
-  },
-  { 
-    title: "Unmasked Silence", 
-    image: "images/Silence.jpeg", 
-    description: "A stylized sketch of a girl veiled in mystery, portraying strength and hidden emotions." 
-  },
-  { 
-    title: "The Poet's Gaze", 
-    image: "images/Gaze.jpeg", 
-    description: "An elegant pencil portrait inspired by Rabindranath Tagore — wisdom etched through calm eyes." 
-  },
-  { 
-    title: "Harmony Within", 
-    image: "images/Harmony.jpeg", 
-    description: "An intricate mandala-inspired sketch representing inner peace and divine femininity." 
-  },
-  { 
-    title: "Divine Elegance", 
-    image: "images/Divine.jpeg", 
-    description: "A detailed ink composition blending tradition and artistry — the goddess-like figure radiates power and grace." 
-  },
-  { 
-    title: "Vase of Dreams", 
-    image: "images/Vase.jpeg", 
-    description: "A watercolor bouquet bursting with color and freshness, celebrating nature's simple beauty." 
-  },
-  { 
-    title: "Nature's Muse", 
-    image: "images/Muse.jpeg", 
-    description: "A surreal pencil creation intertwining a woman's face with leaves and branches — unity between humanity and nature." 
-  },
-  { 
-    title: "Saint of Shadows", 
-    image: "images/Saint.jpeg", 
-    description: "A dramatic portrait in deep graphite tones — wisdom, age, and artistry converge in expressive form." 
-  },
-  { 
-    title: "Blush of Hope", 
-    image: "images/Blush.jpeg", 
-    description: "A single pink bloom against shades of charcoal — symbolizing resilience, purity, and the beauty of simplicity." 
-  },
-  { 
-    title: "Still Life Harmony", 
-    image: "images/Still.jpeg", 
-    description: "A classic pencil still life of vases and fruits, reflecting patience, proportion, and perfect shading balance." 
-  }
+  { title: "Grace in Motion", image: "images/Grace.jpeg", description: "An ink sketch capturing the poise of Bharatanatyam in timeless elegance." },
+  { title: "Wings of Bloom", image: "images/Bloom.jpeg", description: "A butterfly born of petals — where nature and imagination take flight together." },
+  { title: "Echoes of Home", image: "images/Home.jpeg", description: "A quiet village scene painted in shades of memory and solitude." },
+  { title: "Saint of Shadows", image: "images/Saint.jpeg", description: "A dramatic portrait in deep graphite tones — wisdom, age, and artistry converge in expressive form." },
 ];
 
 function renderGallery() {
