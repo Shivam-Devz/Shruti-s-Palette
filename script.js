@@ -1,5 +1,5 @@
 let paintings = JSON.parse(localStorage.getItem('paintings')) || [
-  { title: "Grace in Motion", image: "images/Grace.jpeg", description: "An ink sketch capturing the poise of Bharatanatyam in timeless elegance." },
+  { title: "Grace in Motion", image: "images/Gaze.jpeg", description: "An ink sketch capturing the poise of Bharatanatyam in timeless elegance." },
   { title: "Wings of Bloom", image: "images/Bloom.jpeg", description: "A butterfly born of petals — where nature and imagination take flight together." },
   { title: "Echoes of Home", image: "images/Home.jpeg", description: "A quiet village scene painted in shades of memory and solitude." },
   { title: "Saint of Shadows", image: "images/Saint.jpeg", description: "A dramatic portrait in deep graphite tones — wisdom, age, and artistry converge in expressive form." },
