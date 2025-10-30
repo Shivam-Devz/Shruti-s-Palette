@@ -43,7 +43,7 @@ let paintings = JSON.parse(localStorage.getItem("paintings")) || [
   },
   {
     title: "Timeless Bloom",
-    image: "images/Timless.jpeg",
+    image: "images/Timeless.jpeg",
     description:
       "A classic graphite rose symbolizing love and resilience through soft strokes and sharp details.",
   },
