@@ -89,6 +89,12 @@ let paintings = JSON.parse(localStorage.getItem("paintings")) || [
     description:
       "A surreal pencil creation intertwining a woman's face with leaves and branches — unity between humanity and nature.",
   },
+  {
+    title: "Melody by the Window",
+    image: "images/window.jpeg",
+    description:
+      "A grayscale watercolor still life of a window, hat, and mandolin — a quiet harmony of light, music, and memory.",
+  },
 ];
 
 function renderGallery() {
